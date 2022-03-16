@@ -104,7 +104,15 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
             for (String aValue : row.values()) {
                 if (aValue.toLowerCase().contains(value)) {
-                jobs.add(row);
+                    boolean duplicate = false;
+                    for (HashMap<String, String> job : jobs) {
+                        if (job.values().equals(row.values())) {
+                            duplicate = true;
+                        }
+                    }
+                    if (!duplicate) {
+                        jobs.add(row);
+                    }
                 }
             }
         }
